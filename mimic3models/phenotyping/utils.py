@@ -5,6 +5,33 @@ import threading
 import random
 import os
 
+def load_data(reader, discretizer, normalizer, max_len, small_part=False):
+    N = reader.get_number_of_examples()
+    if small_part:
+        N = 1000
+
+    ret = common_utils.read_chunk(reader, N)
+    data = ret["X"]
+    ts = ret["t"]
+    ys = ret["y"]
+    names = ret["name"]
+
+    # Apply discretizer and normalizer
+    data = [discretizer.transform(X, end=t)[0] for (X, t) in zip(data, ts)]
+    if normalizer is not None:
+        data = [normalizer.transform(X) for X in data]
+
+    # Pad sequences so they all have the same length
+    in_feat = data[0].shape[1]
+    data_padded = np.zeros((len(data), max_len, in_feat), dtype=np.float32)
+    for i, x in enumerate(data):
+        data_padded[i, :x.shape[0], :] = x.astype(np.float32)
+
+    # Convert labels to array
+    ys = np.array(ys, dtype=np.int32)
+    ys_int = np.argmax(ys, axis=1)
+
+    return (data_padded, ys_int)
 
 class BatchGen(object):
 
