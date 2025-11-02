@@ -13,6 +13,8 @@ from mimic3models import keras_utils
 from mimic3models import common_utils
 
 from keras.callbacks import ModelCheckpoint, CSVLogger
+from tensorflow.keras import optimizers
+
 
 parser = argparse.ArgumentParser()
 common_utils.add_common_arguments(parser)
@@ -87,7 +89,14 @@ else:
     loss = 'binary_crossentropy'
     loss_weights = None
 
-model.compile(optimizer=optimizer_config,
+if args.optimizer.lower() == 'adam':
+    optimizer = optimizers.Adam(learning_rate=args.lr, beta_1=args.beta_1)
+elif args.optimizer.lower() == 'sgd':
+    optimizer = optimizers.SGD(learning_rate=args.lr)
+else:
+    raise ValueError(f"Unsupported optimizer: {args.optimizer}")
+
+model.compile(optimizer=optimizer,
               loss=loss,
               loss_weights=loss_weights)
 model.summary()
@@ -140,15 +149,24 @@ if args.mode == 'train':
                            append=True, separator=';')
 
     print("==> training")
-    model.fit(x=train_raw[0],
-              y=train_raw[1],
-              validation_data=val_raw,
-              epochs=n_trained_chunks + args.epochs,
-              initial_epoch=n_trained_chunks,
-              callbacks=[metrics_callback, saver, csv_logger],
-              shuffle=True,
-              verbose=args.verbose,
-              batch_size=args.batch_size)
+    # Ensure y values are numpy arrays
+    train_x, train_y = train_raw
+    val_x, val_y = val_raw
+
+    train_y = np.array(train_y)
+    val_y = np.array(val_y)
+
+    model.fit(
+        x=train_x,
+        y=train_y,
+        validation_data=(val_x, val_y),
+        epochs=n_trained_chunks + args.epochs,
+        initial_epoch=n_trained_chunks,
+        callbacks=[metrics_callback, saver, csv_logger],
+        shuffle=True,
+        verbose=args.verbose,
+        batch_size=args.batch_size
+    )
 
 elif args.mode == 'test':
 
