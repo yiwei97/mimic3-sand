@@ -96,3 +96,12 @@ ENV/
 # States of models
 keras_states/
 states/
+
+# Data
+data/
+
+# Model parameters
+save_params/
+
+# DS_Store
+*.DS_Store
