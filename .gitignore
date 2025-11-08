@@ -105,3 +105,34 @@ save_params/
 
 # DS_Store
 *.DS_Store
+mimic3/ADMISSIONS.csv
+mimic3/CALLOUT.csv
+mimic3/CAREGIVERS.csv
+mimic3/CHARTEVENTS.csv
+mimic3/checksum_md5_unzipped.txt
+mimic3/checksum_md5_zipped.txt
+mimic3/CPTEVENTS.csv
+mimic3/D_CPT.csv
+mimic3/D_ICD_DIAGNOSES.csv
+mimic3/D_ICD_PROCEDURES.csv
+mimic3/D_ITEMS.csv
+mimic3/D_LABITEMS.csv
+mimic3/DATETIMEEVENTS.csv
+mimic3/DIAGNOSES_ICD.csv
+mimic3/DRGCODES.csv
+mimic3/ICUSTAYS.csv
+mimic3/INPUTEVENTS_CV.csv
+mimic3/INPUTEVENTS_MV.csv
+mimic3/LABEVENTS.csv
+mimic3/LICENSE.txt
+mimic3/MICROBIOLOGYEVENTS.csv
+mimic3/NOTEEVENTS.csv
+mimic3/OUTPUTEVENTS.csv
+mimic3/PATIENTS.csv
+mimic3/PRESCRIPTIONS.csv
+mimic3/PROCEDUREEVENTS_MV.csv
+mimic3/PROCEDURES_ICD.csv
+mimic3/README.md
+mimic3/SERVICES.csv
+mimic3/SHA256SUMS.txt
+mimic3/TRANSFERS.csv

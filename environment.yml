@@ -74,7 +74,7 @@ dependencies:
       - charset-normalizer==3.4.4
       - comet-ml==3.54.0
       - configobj==5.0.9
-      - dulwich==0.24.8
+      - dulwich==0.24.7
       - everett==3.1.0
       - flatbuffers==25.9.23
       - gast==0.4.0
@@ -134,4 +134,3 @@ dependencies:
       - werkzeug==3.1.3
       - wrapt==2.0.0
       - wurlitzer==3.1.1
-prefix: /opt/homebrew/anaconda3/envs/cse6250_final_project
