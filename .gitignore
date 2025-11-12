@@ -136,3 +136,13 @@ mimic3/README.md
 mimic3/SERVICES.csv
 mimic3/SHA256SUMS.txt
 mimic3/TRANSFERS.csv
+wandb/latest-run
+wandb/run-20251112_204710-lgogjtkg/run-lgogjtkg.wandb
+wandb/run-20251112_204710-lgogjtkg/files/config.yaml
+wandb/run-20251112_204710-lgogjtkg/files/requirements.txt
+wandb/run-20251112_204710-lgogjtkg/files/wandb-metadata.json
+wandb/run-20251112_204710-lgogjtkg/files/wandb-summary.json
+wandb/run-20251112_204742-12javq1h/run-12javq1h.wandb
+wandb/run-20251112_204742-12javq1h/files/requirements.txt
+wandb/run-20251112_204742-12javq1h/files/wandb-metadata.json
+wandb/*

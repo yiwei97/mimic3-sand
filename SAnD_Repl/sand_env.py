@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 from torch.utils.data import Dataset, DataLoader
-from sand_env import SAnD
+from SAnD_Repl.sand_model import SAnD
 import copy
 from tqdm import tqdm
 import joblib
@@ -84,9 +84,9 @@ class SAnDEnv():
         total_loss = 0.0
 
         with torch.no_grad():
-            for batch in dataloader:
-                X = batch['features']
-                y = batch['labels'].float().squeeze(-1)                
+            for X, y in dataloader:
+                X = X.to(self.device)
+                y = y.float().squeeze(-1).to(self.device)
                 logits = self.model(X).squeeze(-1)
                 loss = self.loss(logits, y)
                 total_loss += loss.item()
@@ -99,9 +99,9 @@ class SAnDEnv():
         self.model.train()
         total_loss = 0.0
 
-        for batch in tqdm(dataloader, total=len(dataloader)):
-            X = batch['features'].to(self.device)
-            y = batch['labels'].float().squeeze(-1).to(self.device)
+        for X, y in tqdm(dataloader, total=len(dataloader)):
+            X = X.to(self.device)
+            y = y.float().squeeze(-1).to(self.device)
 
             logits = self.model(X).squeeze(-1)
 
@@ -182,6 +182,14 @@ class SAnDEnv():
         
         run.finish()
 
+
+    def evaluate(
+        self,
+        model_name,
+        batch_size,
+        num_workers,
+        dataset_name=''
+    )
 def save_model(model, metadata, model_save_dir, model_name):
     torch.save(model.state_dict(), f"{model_save_dir}/{model_name}.pth")
     joblib.dump(metadata, f"{model_save_dir}/{model_name}_metadata.joblib")
