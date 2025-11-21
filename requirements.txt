@@ -6,3 +6,4 @@ scipy==1.13.1
 tqdm==4.67.1
 wandb==0.23.0
 torch==2.8.0
+jupyterlab==4.5.0
