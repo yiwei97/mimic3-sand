@@ -56,7 +56,7 @@ Within each, there are data on the ICU stays, as well as an indicator of all sam
 
 ## Run SAnD model
 
-To replicate the paper's experiments, jupyter notebook files were created for each of the tasks, where model architecture is redefined in each due to minor differences across experiments. The script first reads in the training, validation and test sets using a specialised reader and normaliser, before the defined SAnD model is trained on the dataset. Metrics are logged using WanDB to track the performance of the model, including training and test accuracy and loss to monitor convergence over time. Finally, the test scores for each experiment is reported.  You can run the experiments using the SAnD model with each of the following notebook files:
+To replicate the paper's experiments, jupyter notebook files were created for each of the tasks, where model architecture is redefined in each due to minor differences across experiments. The script first reads in the training, validation and test sets using a specialised reader and normaliser, before the defined SAnD model is trained on the dataset. Metrics are logged using WanDB to track the performance of the model, including training and test accuracy and loss to monitor convergence over time. Finally, the test scores for each experiment is reported.  You can run the experiments using the SAnD model with each of the following notebook files by launching `jupyter lab` in root of the repository:
 1. In hospital mortality prediction: `mimic3models/in_hospital_mortality/run_sand_mortality_e2e.ipynb`
 2. Phenotyping prediction: `mimic3models/phenotyping/run_sand_phenotyping_e2e.ipynb`
 3. Decompensation prediction: `mimic3models/decompensation/run_sand_decompsation_e2e.ipynb`
